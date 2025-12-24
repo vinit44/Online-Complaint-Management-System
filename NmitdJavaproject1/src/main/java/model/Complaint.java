@@ -108,4 +108,4 @@ public class Complaint {
     public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
-}
+} 
