@@ -43,21 +43,21 @@ label{font-weight:600;margin-top:12px;}
 
 <form action="AddOfficerServlet" method="post">
 
-<label>Officer Name</label>
-<input type="text" name="name" class="form-control" required>
+    <label>Officer Name</label>
+    <input type="text" name="name" class="form-control" required>
 
-<label>Email</label>
-<input type="email" name="email" class="form-control" required>
+    <label>Department</label>
+    <input type="text" name="department" class="form-control" required>
 
-<label>Phone</label>
-<input type="text" name="phone" class="form-control">
+    <label>Email</label>
+    <input type="email" name="email" class="form-control" required>
 
-<label>Department</label>
-<input type="text" name="department" class="form-control">
-
-<button class="btn btn-primary w-100 mt-4">Add Officer</button>
+    <button class="btn btn-primary w-100 mt-3">
+        Add Officer & Send Credentials
+    </button>
 
 </form>
+
 
 </div>
 </div>
