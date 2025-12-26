@@ -1,6 +1,7 @@
 package servlet;
 
 import dao.AdminComplaintDAO;
+import dao.OfficerDAO;
 import model.Complaint;
 
 import jakarta.servlet.ServletException;
@@ -26,5 +27,6 @@ public class AdminDashboardServlet extends HttpServlet {
         List<Complaint> complaints = AdminComplaintDAO.getAllComplaints();
         request.setAttribute("complaints", complaints);
         request.getRequestDispatcher("AdminDashboard.jsp").forward(request, response);
+        
     }
 }

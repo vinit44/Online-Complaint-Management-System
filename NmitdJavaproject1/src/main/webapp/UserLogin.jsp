@@ -10,6 +10,59 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <style>
+    /* ===== NAVBAR (SAME AS HOMEPAGE) ===== */
+.navbar {
+    background: rgba(31, 41, 55, 0.95) !important;
+    backdrop-filter: blur(10px);
+    padding: 1rem 0;
+}
+
+/* Login Pill */
+.login-pill {
+    background: #ffffff;
+    color: #1f2937 !important;
+    padding: 8px 22px;
+    border-radius: 90px;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.login-pill:hover {
+    background: #f1f5f9;
+}
+
+/* Register Pill */
+.register-pill {
+    background: #4f46e5;
+    color: #ffffff !important;
+    padding: 8px 22px;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.25s;
+}
+
+.register-pill:hover {
+    background: #4338ca;
+}
+
+/* Dropdown */
+.login-dropdown {
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
+    padding: 6px;
+}
+
+.login-dropdown .dropdown-item {
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-weight: 500;
+}
+
+.login-dropdown .dropdown-item:hover {
+    background: #eef2ff;
+}
+    
         :root {
             --primary-color: #6366f1;
             --primary-hover: #4f46e5;
@@ -125,21 +178,46 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark shadow">
-  <div class="container">
-    <a class="navbar-brand fw-bold" href="#">OCMS</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navBar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="index.jsp">OCMS</a>
 
-    <div class="collapse navbar-collapse" id="navBar">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="homepage.jsp">Home</a></li>
-        <li class="nav-item"><a class="nav-link active" href="UserLogin.jsp">Login</a></li>
-        <li class="nav-item"><a class="nav-link" href="UserRegister.jsp">Register</a></li>
-      </ul>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navBar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navBar">
+            <ul class="navbar-nav ms-auto align-items-center gap-2">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="homepage.jsp">Home</a>
+                </li>
+
+                <!-- LOGIN PILL DROPDOWN -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle login-pill"
+                       href="#" role="button" data-bs-toggle="dropdown">
+                        Login
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end shadow login-dropdown">
+                        <li>
+                            <a class="dropdown-item" href="UserLogin.jsp">👤 User Login</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item text-danger" href="AdminLogin.jsp">🛡️ Admin Login</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- REGISTER -->
+                <li class="nav-item">
+                    <a href="UserRegister.jsp" class="register-pill">Register</a>
+                </li>
+
+            </ul>
+        </div>
     </div>
-  </div>
 </nav>
+
 
 <main class="page-content">
     <div class="auth-card">

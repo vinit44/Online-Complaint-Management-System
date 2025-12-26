@@ -57,6 +57,7 @@
             backdrop-filter: blur(10px);
             padding: 1rem 0;
             z-index: 1000;
+          
         }
 
         /* Layout */
@@ -191,7 +192,7 @@
 
 <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid px-4">
-        <span class="navbar-brand">Complaint Management System</span>
+        <span class="navbar-brand" style="color: white">Complaint Management System</span>
         <div class="ms-auto">
             <a href="LogoutServlet" class="btn btn-danger btn-sm">Logout</a>
         </div>
@@ -221,9 +222,9 @@
             Register New Complaint
         </a>
 
-        <a href="ViewComplaints.jsp" class="btn btn-outline-primary w-100">
-            View My Complaints
-        </a>
+     <a href="ViewComplaintsServlet" class="btn btn-outline-primary w-100">
+    View My Complaints
+</a>
 
         <a href="#" class="btn btn-outline-secondary w-100 mt-2">
             Download Complaint Report
@@ -232,9 +233,7 @@
     </div>
 </main>
 
-<footer class="app-footer">
-    © 2025 Online Complaint Management System
-</footer>
+
 
 </body>
 </html>

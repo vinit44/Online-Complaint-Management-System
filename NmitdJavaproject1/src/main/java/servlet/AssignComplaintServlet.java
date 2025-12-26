@@ -5,10 +5,14 @@ import util.DBConnection;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
+import model.Officer;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.util.List;
+
+import dao.OfficerDAO;
 
 @WebServlet("/AssignComplaintServlet")
 public class AssignComplaintServlet extends HttpServlet {
@@ -35,4 +39,21 @@ public class AssignComplaintServlet extends HttpServlet {
         }
         response.sendRedirect("AdminDashboardServlet");
     }
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        // Fetch officers from DB
+        List<Officer> officers = OfficerDAO.getAllOfficers();
+
+        // DEBUG (IMPORTANT)
+        System.out.println("Officers count: " + officers.size());
+
+        // Send to JSP
+        request.setAttribute("officers", officers);
+
+        request.getRequestDispatcher("AssignComplaint.jsp")
+               .forward(request, response);
+    }
+
 }
