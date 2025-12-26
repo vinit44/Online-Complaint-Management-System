@@ -8,7 +8,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OfficerDAO {
+	public static boolean validateOfficer(String username, String password){
+	    boolean status = false;
+	    try{
+	        Connection con = DBConnection.getConnection();
+	        String sql = "SELECT * FROM officers WHERE username=? AND password=?";
+	        PreparedStatement ps = con.prepareStatement(sql);
+	        ps.setString(1, username);
+	        ps.setString(2, password);
 
+	        ResultSet rs = ps.executeQuery();
+	        status = rs.next();
+	    }catch(Exception e){
+	        e.printStackTrace();
+	    }
+	    return status;
+	}
     /* ================= GET ALL OFFICERS ================= */
     public static List<Officer> getAllOfficers() {
 

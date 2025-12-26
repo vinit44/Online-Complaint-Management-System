@@ -206,6 +206,11 @@
                     <ul class="dropdown-menu dropdown-menu-end shadow login-dropdown">
                         <li><a class="dropdown-item" href="UserLogin.jsp">👤 User Login</a></li>
                         <li><a class="dropdown-item text-danger" href="AdminLogin.jsp">🛡️ Admin Login</a></li>
+                         <li>
+         <a class="dropdown-item" href="OfficerLogin.jsp">
+            👮 Officer Login
+        </a>
+    </li>
                     </ul>
                 </li>
 
