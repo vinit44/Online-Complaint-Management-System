@@ -48,7 +48,7 @@ public class EmailUtil {
                 Password: %s
 
                 🔗 Login URL:
-                http://localhost:8080/YourProject/AdminLogin.jsp
+                http://localhost:8080/NmitdJavaproject1/OfficerLogin.jsp
 
                 ⚠️ Please change your password after first login.
 

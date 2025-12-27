@@ -163,25 +163,21 @@ label {
             <input type="hidden" name="id" value="<%= request.getParameter("id") %>">
 
             <!-- OFFICER DROPDOWN -->
-            <label>Assign To (Officer)</label>
-            <select name="assignedTo" class="form-control" required>
-                <option value="">-- Select Officer --</option>
+           
+           <label>Assign To (Officer)</label>
+<select name="assignedTo" class="form-control" required>
+    <option value="">-- Select Officer --</option>
 
-                <%
-                    List<Officer> officers =
-                        (List<Officer>) request.getAttribute("officers");
+    <% 
+        List<Officer> officers = (List<Officer>) request.getAttribute("officers");
+        for (Officer o : officers) {
+    %>
+        <option value="<%= o.getUsername() %>">
+            <%= o.getName() %> (<%= o.getUsername() %>)
+        </option>
+    <% } %>
+</select>
 
-                    if (officers != null && !officers.isEmpty()) {
-                        for (Officer o : officers) {
-                %>
-                    <option value="<%= o.getName() %>">
-                        <%= o.getName() %> (<%= o.getDepartment() %>)
-                    </option>
-                <%
-                        }
-                    }
-                %>
-            </select>
 
             <label>Priority</label>
             <select name="priority" class="form-control">

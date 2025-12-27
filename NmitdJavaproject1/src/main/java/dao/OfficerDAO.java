@@ -1,5 +1,6 @@
 package dao;
 
+import model.Complaint;
 import model.Officer;
 import util.DBConnection;
 
@@ -132,5 +133,34 @@ public class OfficerDAO {
         }
         return exists;
     }
+    public static Officer login(String username, String password) {
+
+        Officer o = null;
+
+        try {
+            Connection con = DBConnection.getConnection();
+            String sql = "SELECT * FROM officers WHERE username=? AND password=?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, username);
+            ps.setString(2, password);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                o = new Officer();
+                o.setId(rs.getInt("id"));
+                o.setUsername(rs.getString("username"));
+                o.setName(rs.getString("name"));
+                o.setEmail(rs.getString("email"));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return o;
+    }
+
+    
+
 
 }

@@ -9,6 +9,31 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
+/* ================= ADMIN NAVBAR ================= */
+.admin-navbar {
+    background: rgba(17, 24, 39, 0.95) !important;
+    backdrop-filter: blur(10px);
+    padding: 1rem 0;
+}
+
+.admin-pill {
+    background: #ffffff;
+    color: #111827 !important;
+    padding: 8px 22px;
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+.admin-dropdown {
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
+    padding: 6px;
+}
+
+.admin-dropdown .dropdown-item:hover {
+    background: #fee2e2;
+}
+
 body{
     font-family:'Plus Jakarta Sans',sans-serif;
     background:linear-gradient(135deg,#eef2ff,#f8fafc);
@@ -34,7 +59,50 @@ label{font-weight:600;margin-top:12px;}
 
 <body>
 
+<!-- ===== ADMIN NAVBAR ===== -->
+<nav class="navbar navbar-expand-lg navbar-dark admin-navbar shadow fixed-top">
+    <div class="container-fluid px-4">
 
+        <a class="navbar-brand fw-bold" href="AdminDashboardServlet">
+            🛡️ OCMS Admin
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="adminNav">
+            <ul class="navbar-nav ms-auto align-items-center gap-2">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="AdminDashboardServlet">Dashboard</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle admin-pill"
+                       href="#"
+                       id="adminDropdown"
+                       role="button"
+                       data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Admin
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-end admin-dropdown shadow"
+                        aria-labelledby="adminDropdown">
+                        <li>
+                            <a  class="dropdown-item text-danger fw-semibold"
+                               href="AdminLogoutServlet">
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
 
 <div class="page-content">
 <div class="card">
@@ -48,6 +116,12 @@ label{font-weight:600;margin-top:12px;}
 
     <label>Department</label>
     <input type="text" name="department" class="form-control" required>
+<label>Phone Number</label>
+<input type="text"
+       name="phone"
+       class="form-control"
+       placeholder="Enter phone number"
+       required>
 
     <label>Email</label>
     <input type="email" name="email" class="form-control" required>

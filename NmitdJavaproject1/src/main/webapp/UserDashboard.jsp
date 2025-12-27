@@ -1,6 +1,7 @@
 <%@ page import="java.util.Map" %>
 
 <%@ page import="java.util.Map, java.util.HashMap" %>
+<%@ page import="java.util.List, model.Complaint" %>
 
 <%
     // Session validation
@@ -216,7 +217,44 @@
             <div class="col-md-3"><strong>Rejected</strong><br><%= stats.get("Rejected") %></div>
         </div>
 
-        <hr>
+<hr>
+<h4>My Assigned Complaints</h4>
+
+<%
+    List<Complaint> complaints =
+        (List<Complaint>) request.getAttribute("complaints");
+%>
+
+<% if (complaints == null || complaints.isEmpty()) { %>
+    <p>No complaints assigned yet.</p>
+<% } else { %>
+
+<table class="table table-bordered mt-3">
+<tr>
+    <th>ID</th>
+    <th>Title</th>
+    <th>Status</th>
+    <th>Assigned Officer</th>
+</tr>
+
+<% for (Complaint c : complaints) { %>
+<tr>
+    <td>#<%= c.getId() %></td>
+    <td><%= c.getTitle() %></td>
+    <td><%= c.getStatus() %></td>
+    <td>
+        <% if (c.getAssignedTo() != null) { %>
+            <strong><%= c.getOfficerName() %></strong><br>
+            📞 <%= c.getOfficerPhone() %>
+        <% } else { %>
+            Not Assigned
+        <% } %>
+    </td>
+</tr>
+<% } %>
+</table>
+<% } %>
+
 
         <a href="AddComplaint.jsp" class="btn btn-primary w-100 mb-2">
             Register New Complaint
@@ -231,6 +269,7 @@
         </a>
 
     </div>
+    
 </main>
 
 

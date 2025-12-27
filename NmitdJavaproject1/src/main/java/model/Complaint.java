@@ -15,6 +15,41 @@ public class Complaint {
     private String adminRemarks;
     private Timestamp createdAt;
     private Timestamp updatedAt;
+    private String priority;
+    private String officerRemarks;
+    private String officerName;
+    private String officerPhone;
+
+    public String getOfficerName() {
+        return officerName;
+    }
+
+    public void setOfficerName(String officerName) {
+        this.officerName = officerName;
+    }
+
+    public String getOfficerPhone() {
+        return officerPhone;
+    }
+
+    public void setOfficerPhone(String officerPhone) {
+        this.officerPhone = officerPhone;
+    }
+    public String getOfficerRemarks() {
+        return officerRemarks;
+    }
+
+    public void setOfficerRemarks(String officerRemarks) {
+        this.officerRemarks = officerRemarks;
+    }
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
 
     // ===== Constructors =====
     public Complaint() {

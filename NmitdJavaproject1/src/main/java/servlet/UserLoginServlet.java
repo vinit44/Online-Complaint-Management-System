@@ -31,7 +31,7 @@ public class UserLoginServlet extends HttpServlet {
             session.setAttribute("userEmail", user.getEmail());
             session.setAttribute("userName", user.getName());
 
-            response.sendRedirect("UserDashboard.jsp");
+            response.sendRedirect("UserDashboardServlet");
         } else {
             response.sendRedirect("UserLogin.jsp?error=invalid_credentials");
         }

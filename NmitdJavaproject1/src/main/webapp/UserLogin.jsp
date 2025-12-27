@@ -179,7 +179,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark shadow">
     <div class="container">
-        <a class="navbar-brand fw-bold" href="index.jsp">OCMS</a>
+        <a class="navbar-brand fw-bold" href="homepage.jsp">OCMS</a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navBar">
             <span class="navbar-toggler-icon"></span>
@@ -199,12 +199,15 @@
                         Login
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end shadow login-dropdown">
-                        <li>
-                            <a class="dropdown-item" href="UserLogin.jsp">👤 User Login</a>
-                        </li>
+                       
                         <li>
                             <a class="dropdown-item text-danger" href="AdminLogin.jsp">🛡️ Admin Login</a>
                         </li>
+                                        <li>
+         <a class="dropdown-item" href="OfficerLogin.jsp">
+            👮 Officer Login
+        </a>
+    </li>
                     </ul>
                 </li>
 

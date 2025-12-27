@@ -4,6 +4,7 @@ import dao.OfficerDAO;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
+import model.Officer;
 
 import java.io.IOException;
 
@@ -16,14 +17,18 @@ public class OfficerLoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        boolean valid = OfficerDAO.validateOfficer(username, password);
+        Officer officer = OfficerDAO.login(username, password);
 
-        if(valid){
+        if (officer != null) {
             HttpSession session = request.getSession();
-            session.setAttribute("officer", username);
-            response.sendRedirect("OfficerDashboard.jsp");
+            
+            session.setAttribute("officerUsername", officer.getUsername());
+
+            response.sendRedirect("OfficerDashboardServlet");
         } else {
-            response.sendRedirect("OfficerLogin.jsp?error=1");
+            response.sendRedirect("OfficerLogin.jsp?error=invalid");
         }
     }
 }
+
+
