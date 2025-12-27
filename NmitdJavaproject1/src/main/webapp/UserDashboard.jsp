@@ -211,10 +211,10 @@
         <h5>Total Complaints: <strong><%= total %></strong></h5>
 
         <div class="row text-center mt-3">
-            <div class="col-md-3"><strong>Pending</strong><br><%= stats.get("Pending") %></div>
-            <div class="col-md-3"><strong>In-Progress</strong><br><%= stats.get("In-Progress") %></div>
-            <div class="col-md-3"><strong>Resolved</strong><br><%= stats.get("Resolved") %></div>
-            <div class="col-md-3"><strong>Rejected</strong><br><%= stats.get("Rejected") %></div>
+            <div class="col-md-3"><strong>Pending</strong><br><%= stats.getOrDefault("Pending", 0) %></div>
+            <div class="col-md-3"><strong>In-Progress</strong><br><%= stats.getOrDefault("In Progress", 0) %></div>
+            <div class="col-md-3"><strong>Resolved</strong><br><%= stats.getOrDefault("Resolved", 0) %></div>
+            <div class="col-md-3"><strong>Rejected</strong><br><%= stats.getOrDefault("Rejected", 0) %></div>
         </div>
 
 <hr>
@@ -245,7 +245,7 @@
     <td>
         <% if (c.getAssignedTo() != null) { %>
             <strong><%= c.getOfficerName() %></strong><br>
-            📞 <%= c.getOfficerPhone() %>
+           <%= c.getOfficerPhone() %>
         <% } else { %>
             Not Assigned
         <% } %>

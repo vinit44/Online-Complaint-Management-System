@@ -19,6 +19,15 @@ public class Complaint {
     private String officerRemarks;
     private String officerName;
     private String officerPhone;
+    private String proofFile;
+
+    public String getProofFile() {
+        return proofFile;
+    }
+
+    public void setProofFile(String proofFile) {
+        this.proofFile = proofFile;
+    }
 
     public String getOfficerName() {
         return officerName;

@@ -164,7 +164,7 @@
             </div>
         <% } %>
 
-        <form action="AddComplaintServlet" method="post">
+        <form action="AddComplaintServlet" method="post" enctype="multipart/form-data">
 
             <div class="mb-3">
                 <label>Category</label>
@@ -192,7 +192,16 @@
                 <label>Location</label>
                 <input type="text" name="location" class="form-control" placeholder="City / Area">
             </div>
-
+<div class="mb-3">
+    <label>Upload Proof (Image / Video)</label>
+    <input type="file"
+           name="proofFile"
+           class="form-control"
+           accept="image/*,video/*">
+    <small class="text-muted">
+        Accepted: JPG, PNG, MP4 (Max 10MB)
+    </small>
+</div>
             <button type="submit" class="btn btn-primary w-100">
                 Submit Complaint
             </button>

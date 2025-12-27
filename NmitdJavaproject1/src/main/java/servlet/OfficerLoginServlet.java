@@ -21,8 +21,10 @@ public class OfficerLoginServlet extends HttpServlet {
 
         if (officer != null) {
             HttpSession session = request.getSession();
-            
+
+            session.setAttribute("officerId", officer.getId());
             session.setAttribute("officerUsername", officer.getUsername());
+            session.setAttribute("officerName", officer.getName()); // ⭐ ADD THIS
 
             response.sendRedirect("OfficerDashboardServlet");
         } else {
@@ -30,5 +32,3 @@ public class OfficerLoginServlet extends HttpServlet {
         }
     }
 }
-
-

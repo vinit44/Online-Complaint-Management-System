@@ -43,6 +43,7 @@ public class ComplaintDAO {
                 c.setAdminRemarks(rs.getString("admin_remarks"));
                 c.setCreatedAt(rs.getTimestamp("created_at"));
                 c.setUpdatedAt(rs.getTimestamp("updated_at"));
+                c.setProofFile(rs.getString("proof_file"));
 
                 list.add(c);
             }
@@ -55,35 +56,37 @@ public class ComplaintDAO {
     }
 
 
-    public static boolean addComplaint(Complaint c) {
+	public static boolean addComplaint(Complaint c) {
 
-        boolean result = false;
+	    boolean result = false;
 
-        try {
-            Connection con = DBConnection.getConnection();
+	    try {
+	        Connection con = DBConnection.getConnection();
 
-            String sql = """
-                INSERT INTO complaints
-                (category, title, description, location, status, user_email)
-                VALUES (?, ?, ?, ?, ?, ?)
-            """;
+	        String sql = """
+	            INSERT INTO complaints
+	            (category, title, description, location, status, user_email, proof_file)
+	            VALUES (?, ?, ?, ?, ?, ?, ?)
+	        """;
 
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, c.getCategory());
-            ps.setString(2, c.getTitle());
-            ps.setString(3, c.getDescription());
-            ps.setString(4, c.getLocation());
-            ps.setString(5, "Pending");
-            ps.setString(6, c.getUserEmail());
+	        PreparedStatement ps = con.prepareStatement(sql);
+	        ps.setString(1, c.getCategory());
+	        ps.setString(2, c.getTitle());
+	        ps.setString(3, c.getDescription());
+	        ps.setString(4, c.getLocation());
+	        ps.setString(5, "Pending");
+	        ps.setString(6, c.getUserEmail());
+	        ps.setString(7, c.getProofFile()); // ✅ NOW MATCHES SQL
 
-            result = ps.executeUpdate() > 0;
+	        result = ps.executeUpdate() > 0;
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
 
-        return result;
-    }
+	    return result;
+	}
+
     public static List<Complaint> getComplaintsByOfficer(String username) {
 
         List<Complaint> list = new ArrayList<>();
@@ -93,7 +96,7 @@ public class ComplaintDAO {
             Connection con = DBConnection.getConnection();
 
             String sql = """
-                SELECT id, title, priority, status, admin_remarks
+                SELECT id, title, priority, status, admin_remarks , proof_file
                 FROM complaints
                 WHERE assigned_to = ?
             """;
@@ -110,6 +113,8 @@ public class ComplaintDAO {
                 c.setPriority(rs.getString("priority"));
                 c.setStatus(rs.getString("status"));
                 c.setAdminRemarks(rs.getString("admin_remarks"));
+                c.setProofFile(rs.getString("proof_file"));
+
                 list.add(c);
             }
 
@@ -240,6 +245,7 @@ public class ComplaintDAO {
                 // officer info
                 c.setOfficerName(rs.getString("officer_name"));
                 c.setOfficerPhone(rs.getString("officer_phone"));
+                c.setProofFile(rs.getString("proof_file"));
 
                 list.add(c);
             }

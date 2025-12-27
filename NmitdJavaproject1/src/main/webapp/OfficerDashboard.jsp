@@ -1,142 +1,231 @@
 <%@ page import="java.util.*, model.Complaint" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Officer Dashboard</title>
 
 <style>
-/* ===== PAGE ===== */
-body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    background: linear-gradient(135deg, #eef2ff, #f8fafc);
-    padding: 40px;
+/* ========== RESET ========== */
+* {
+    box-sizing: border-box;
 }
 
-/* Heading */
-h3 {
+/* ========== NAVBAR ========== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(90deg, #0f172a, #111827);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    z-index: 1000;
+}
+
+.navbar-inner {
+    max-width: 1200px;
+    margin: auto;
+    height: 100%;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand {
+    color: #ffffff;
     font-weight: 700;
+    font-size: 1rem;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.nav-right span {
+    color: #e5e7eb;
+    font-size: 0.9rem;
+}
+
+.logout-btn {
+    background: #ef4444;
+    color: #ffffff;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.logout-btn:hover {
+    background: #dc2626;
+}
+
+/* ========== PAGE ========== */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f1f5f9;
+    padding-top: 80px;
+}
+
+.dashboard-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+h2 {
     margin-bottom: 20px;
     color: #111827;
 }
 
-/* Empty state */
-.no-data {
-    background: #fff;
-    padding: 20px;
-    border-radius: 14px;
-    color: #6b7280;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-}
-
-/* ===== TABLE ===== */
-.table {
-    background: transparent;
-    border-collapse: separate;
-    border-spacing: 0 12px;
-}
-
-.table thead th {
-    background: #f1f5f9;
-    padding: 14px;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    color: #374151;
-    border: none;
-}
-
-.table tbody tr {
+/* ========== TABLE ========== */
+.table-card {
     background: #ffffff;
-    border-radius: 18px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-    transition: transform 0.25s ease;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    overflow: hidden;
 }
 
-.table tbody tr:hover {
-    transform: translateY(-3px);
+table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-.table td {
+thead {
+    background: #f8fafc;
+}
+
+thead th {
     padding: 14px;
-    border: none;
-    vertical-align: top;
+    font-size: 0.8rem;
+    color: #374151;
+    text-transform: uppercase;
+    text-align: left;
+}
+
+tbody td {
+    padding: 14px;
     font-size: 0.9rem;
+    border-top: 1px solid #e5e7eb;
 }
 
-/* ===== STATUS COLORS ===== */
-.status-assigned {
-    color: #f59e0b;
-    font-weight: 700;
+tbody tr:hover {
+    background: #f9fafb;
 }
 
-.status-progress {
-    color: #3b82f6;
-    font-weight: 700;
-}
-
+/* ========== STATUS COLORS ========== */
 .status-resolved {
-    color: #10b981;
-    font-weight: 700;
-}
-
-/* ===== ACTION FORMS ===== */
-textarea.form-control {
-    border-radius: 12px;
-    resize: none;
-    font-size: 0.85rem;
-}
-
-button.btn-sm {
-    border-radius: 12px;
+    color: #16a34a;
     font-weight: 600;
 }
 
-/* ===== BADGE ===== */
-.badge {
-    padding: 8px 14px;
-    border-radius: 999px;
-    font-size: 0.8rem;
+.status-rejected {
+    color: #dc2626;
+    font-weight: 600;
 }
 
-/* ===== MOBILE ===== */
-@media (max-width: 768px) {
-    body {
-        padding: 15px;
-    }
+.status-progress {
+    color: #2563eb;
+    font-weight: 600;
+}
 
-    .table thead {
+.status-assigned {
+    color: #f59e0b;
+    font-weight: 600;
+}
+
+/* ========== BADGES ========== */
+.badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.badge.success {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.badge.danger {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* ========== MOBILE ========== */
+@media (max-width: 768px) {
+
+    thead {
         display: none;
     }
 
-    .table tbody tr {
+    table, tbody, tr, td {
         display: block;
-        margin-bottom: 15px;
+        width: 100%;
     }
 
-    .table td {
+    tr {
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+    }
+
+    td {
+        border: none;
         display: flex;
         justify-content: space-between;
+        padding: 6px 0;
     }
 
-    .table td::before {
+    td::before {
         content: attr(data-label);
         font-weight: 600;
         color: #6b7280;
     }
 }
 </style>
+</head>
 
-<h3>My Assigned Complaints</h3>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="brand">Complaint Management System</div>
+        <div class="nav-right">
+            <span>
+                Welcome,
+                <%= session.getAttribute("officerName") != null
+                        ? session.getAttribute("officerName")
+                        : session.getAttribute("officerUsername") %>
+            </span>
+            <a href="OfficerLogoutServlet" class="logout-btn">Logout</a>
+        </div>
+    </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard-container">
+
+<h2>Officer Dashboard</h2>
 
 <%
-    List<Complaint> complaints =
+List<Complaint> complaints =
         (List<Complaint>) request.getAttribute("complaints");
 %>
 
 <% if (complaints == null || complaints.isEmpty()) { %>
-
-    <div class="no-data">
-        No complaints assigned to you.
-    </div>
-
+    <p>No complaints assigned to you.</p>
 <% } else { %>
 
-<table class="table table-hover">
+<div class="table-card">
+<table>
 <thead>
 <tr>
     <th>ID</th>
@@ -156,10 +245,11 @@ button.btn-sm {
     <td data-label="Priority"><%= c.getPriority() %></td>
 
     <td data-label="Status"
-        class="<%= 
-            c.getStatus().equals("Assigned") ? "status-assigned" :
-            c.getStatus().equals("In Progress") ? "status-progress" :
-            "status-resolved"
+        class="<%=
+            "Resolved".equals(c.getStatus()) ? "status-resolved" :
+            "Rejected".equals(c.getStatus()) ? "status-rejected" :
+            "In Progress".equals(c.getStatus()) ? "status-progress" :
+            "status-assigned"
         %>">
         <%= c.getStatus() %>
     </td>
@@ -169,37 +259,40 @@ button.btn-sm {
     </td>
 
     <td data-label="Action">
-
-        <% if ("Assigned".equals(c.getStatus())) { %>
-            <form action="UpdateComplaintStatusServlet" method="post">
-                <input type="hidden" name="id" value="<%= c.getId() %>">
-                <input type="hidden" name="status" value="In Progress">
-                <textarea name="remarks" class="form-control mb-2"
-                          placeholder="Work started..." required></textarea>
-                <button class="btn btn-warning btn-sm w-100">
-                    Start Work
-                </button>
-            </form>
-
-        <% } else if ("In Progress".equals(c.getStatus())) { %>
-            <form action="UpdateComplaintStatusServlet" method="post">
-                <input type="hidden" name="id" value="<%= c.getId() %>">
-                <input type="hidden" name="status" value="Resolved">
-                <textarea name="remarks" class="form-control mb-2"
-                          placeholder="Work completed..." required></textarea>
-                <button class="btn btn-success btn-sm w-100">
-                    Mark Resolved
-                </button>
-            </form>
-
+        <% if ("Resolved".equals(c.getStatus())) { %>
+            <span class="badge success">Completed</span>
+        <% } else if ("Rejected".equals(c.getStatus())) { %>
+            <span class="badge danger">Rejected</span>
         <% } else { %>
-            <span class="badge bg-success">Completed</span>
+            In Progress
         <% } %>
-
     </td>
+    <th>Proof</th>
+    
+    <td data-label="Proof">
+<% if (c.getProofFile() != null) { %>
+
+    <% if (c.getProofFile().endsWith(".mp4")) { %>
+        <video width="150" controls>
+            <source src="<%= c.getProofFile() %>" type="video/mp4">
+        </video>
+    <% } else { %>
+        <img src="<%= c.getProofFile() %>" width="120" style="border-radius:8px;">
+    <% } %>
+
+<% } else { %>
+    -
+<% } %>
+</td>
+    
 </tr>
 <% } %>
 </tbody>
 </table>
+</div>
 
 <% } %>
+</div>
+
+</body>
+</html>
